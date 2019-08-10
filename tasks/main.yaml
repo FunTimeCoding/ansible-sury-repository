@@ -1,1 +1,12 @@
 ---
+- get_url:
+    url: https://packages.sury.org/php/apt.gpg
+    dest: /etc/apt/trusted.gpg.d/sury.gpg
+  remote_user: root
+  when: ansible_os_family == 'Debian'
+
+- apt_repository:
+    repo: 'deb https://packages.sury.org/php stretch main'
+    filename: sury
+  remote_user: root
+  when: ansible_os_family == 'Debian'
